@@ -3,4 +3,5 @@
     <string name="roulette">Roulette</string>
     <string name="arrow">arrow</string>
     <string name="filter">impregnate</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
