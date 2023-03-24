@@ -5,24 +5,31 @@
 
     <group android:checkableBehavior="single">
     <item
-        android:id="@+id/miItem1"
-        android:title="Item1"/>
+        android:id="@+id/nav_roulette"
+        android:title="@string/roulette"
+        android:icon="@drawable/roulette"/>
 
     <item
-        android:id="@+id/miItem2"
-        android:title="Item2"/>
+        android:id="@+id/nav_maps"
+        android:title="@string/map"
+        android:icon="@drawable/ic_baseline_map_24"/>
     <item
-        android:id="@+id/miItem3"
-        android:title="Item3"/>
+        android:id="@+id/nav_favorite"
+        android:title="@string/favorite"
+        android:icon="@drawable/ic_baseline_favorite_24"/>
 
     </group>
 
-    <item android:title="else">
+    <item android:title="@string/other">
         <menu>
             <item
                 android:id="@+id/nav_bug"
-                android:title="Bug"
+                android:title="@string/bug"
                 android:icon="@drawable/ic_baseline_report_problem_24"/>
+            <item
+                android:id="@+id/nav_questions"
+                android:title="@string/qanda"
+                android:icon="@drawable/ic_baseline_question_mark_24"/>
         </menu>
     </item>
 

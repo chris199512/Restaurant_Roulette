@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Restaurant Roulette</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="roulette">Roulette</string>
     <string name="arrow">arrow</string>
-    <string name="filter">impregnate</string>
+    <string name="filter">Filter</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="welcomepage">Home page</string>
+    <string name="map">Map</string>
+    <string name="favorite">Favorite</string>
+    <string name="bug">Bug</string>
+    <string name="qanda" translatable="false"><![CDATA[Q&A]]></string>
+    <string name="other">Other</string>
 </resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Restaurant Roulette</string>
+    <string name="roulette">Roulette</string>
+    <string name="arrow">pfeil</string>
+    <string name="filter">Filter</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="map">Karte</string>
+    <string name="favorite">Favorit</string>
+    <string name="bug">Fehler</string>
+    <string name="welcomepage">Startseite</string>
+    <string name="other">Sonstige</string>
+    <string name="qanda"><![CDATA[Q&A]]></string>
+    <string name="navigation_drawer_open">Navigation öffnen</string>
+    <string name="navigation_drawer_close">Navigation schließen</string>
+</resources>
