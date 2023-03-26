@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/roulette"
+        android:layout_width="325dp"
+        android:layout_height="343dp"
+        android:contentDescription="@string/roulette"
+        android:onClick="start"
+        android:src="@drawable/roulette"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.361" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
+        android:contentDescription="@string/arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/roulette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34"
+        app:srcCompat="@drawable/arrow" />
+
+    <Button
+        android:id="@+id/filter"
+        android:layout_width="157dp"
+        android:layout_height="51dp"
+        android:text="@string/filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roulette" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,14 +15,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    ImageView imageViewRoulette;
-    Button filterButton;
-    Animation rotateImage;
 
     Toolbar toolbar;
 
@@ -50,12 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Set roulette image as variable
-        imageViewRoulette=findViewById(R.id.roulette);
-
-        //Make filter button clickable
-        filterButton=findViewById(R.id.filter);
-        filterButton.setOnClickListener(this);
+        //Start Roulette Fragment on first start
+        if(savedInstanceState==null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new RouletteFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_roulette);
+        }
     }
 
     @Override
@@ -64,6 +62,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.nav_roulette:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RouletteFragment()).commit();
+                break;
+            case R.id.nav_maps:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new MapsFragment()).commit();
+                break;
+            case R.id.nav_favorite:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FavoriteFragment()).commit();
+                break;
+            case R.id.nav_bug:
+                Toast.makeText(this, "Bug", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_questions:
+                Toast.makeText(this, "Q&A", Toast.LENGTH_SHORT).show();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -80,14 +92,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void start(View view) {
-        //Rotate image
-        rotateImage= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate);
-        imageViewRoulette.startAnimation(rotateImage);
-    }
-
-    public void onClick(View v){
-
-        startActivity(new Intent(this, MapsActivity.class));
-    }
 }

@@ -41,54 +41,5 @@
         app:menu="@menu/nav_drawer_menu"
         />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/roulette"
-            android:layout_width="425dp"
-            android:layout_height="443dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="100dp"
-            android:contentDescription="@string/roulette"
-            android:onClick="start"
-            android:src="@drawable/roulette"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="ImageContrastCheck" />
-
-        <ImageView
-            android:id="@+id/arrow"
-            android:layout_width="53dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="179dp"
-            android:contentDescription="@string/arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/roulette"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.267"
-            app:srcCompat="@drawable/arrow" />
-
-        <Button
-            android:id="@+id/filter"
-            android:layout_width="157dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="158dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="158dp"
-            android:layout_marginBottom="138dp"
-            android:text="@string/filter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/roulette" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
