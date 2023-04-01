@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
 
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationClient;
+    private double lat, lng;
+    ImageButton restaurant, bar;
 
     public MapsFragment() {
         // Required empty public constructor
@@ -45,7 +48,30 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        //getPlaces
+        restaurant=rootView.findViewById(R.id.map_restaurant_button);
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        restaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StringBuilder stringBuilder=new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+                stringBuilder.append("location="+lat+","+lng);
+                stringBuilder.append("&radius=10000");
+                stringBuilder.append("&type=restaurant");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key=AIzaSyB2c9Jp_CMJXsmrDeixndAc7Gwve6rv3D8");
+
+                String url=stringBuilder.toString();
+                Object dataFetch[]=new Object[2];
+                dataFetch[0]=mMap;
+                dataFetch[1]=url;
+
+                FetchData fetchData=new FetchData();
+                fetchData.execute(dataFetch);
+            }
+        });
 
         return rootView;
     }
@@ -65,7 +91,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                            lat= location.getLatitude();
+                            lng=location.getLongitude();
+                            LatLng currentLocation = new LatLng(lat, lng);
                             mMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
                         }
