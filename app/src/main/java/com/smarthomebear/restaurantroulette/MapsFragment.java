@@ -61,7 +61,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
                 stringBuilder.append("&radius=10000");
                 stringBuilder.append("&type=restaurant");
                 stringBuilder.append("&sensor=true");
-                stringBuilder.append("&key=AIzaSyB2c9Jp_CMJXsmrDeixndAc7Gwve6rv3D8");
+                stringBuilder.append("&key=");
 
                 String url=stringBuilder.toString();
                 Object dataFetch[]=new Object[2];
