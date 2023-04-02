@@ -11,29 +11,19 @@
         android:layout_height="343dp"
         android:contentDescription="@string/roulette"
         android:onClick="start"
-        android:src="@drawable/roulette"
+        android:src="@drawable/kreis1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
-
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="53dp"
-        android:layout_height="54dp"
-        android:contentDescription="@string/arrow"
-        app:layout_constraintBottom_toBottomOf="@+id/roulette"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34"
-        app:srcCompat="@drawable/arrow" />
+        app:layout_constraintVertical_bias="0.357" />
 
     <Button
         android:id="@+id/filter"
         android:layout_width="157dp"
         android:layout_height="51dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/ashGrey"
         android:text="@string/filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

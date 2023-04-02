@@ -12,4 +12,9 @@
     <string name="bug">Bug</string>
     <string name="qanda" translatable="false"><![CDATA[Q&A]]></string>
     <string name="other">Other</string>
+    <string-array name="preferences">
+        <item>Vegan</item>
+        <item>Vegetarisch</item>
+        <item>Fleisch</item>
+    </string-array>
 </resources>

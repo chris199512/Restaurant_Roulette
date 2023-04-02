@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class RouletteFragment extends Fragment implements View.OnClickListener{
 
@@ -24,24 +25,26 @@ public class RouletteFragment extends Fragment implements View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_roulette, container, false);
+        View view = inflater.inflate(R.layout.fragment_roulette, container, false);
+        Button filter=(Button) view.findViewById(R.id.filter);
+
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.fragment_container, new PopFragment());
+                fr.commit();
+            }
+        });
+        return view;
+
 
     }
+
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //Set roulette image as variable
-        imageViewRoulette=getView().findViewById(R.id.roulette);
-
-        //Make filter button clickable
-        filterButton=getView().findViewById(R.id.filter);
-        filterButton.setOnClickListener(this);
-    }
-
-
-    public void onClick(View v){
+    public void onClick(View view) {
 
     }
-
 }
+
