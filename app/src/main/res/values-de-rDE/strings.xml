@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Restaurant Roulette</string>
+    <string name="app_name">TasteSpinner</string>
     <string name="roulette">Roulette</string>
     <string name="arrow">pfeil</string>
     <string name="filter">Filter</string>
