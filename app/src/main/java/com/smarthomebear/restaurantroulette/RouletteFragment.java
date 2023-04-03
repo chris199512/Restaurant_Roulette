@@ -20,11 +20,17 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouletteFragment extends Fragment implements View.OnClickListener {
+public class RouletteFragment extends Fragment {
 
     ImageView imageViewRoulette;
     Button filterButton;
     Animation rotateImage;
+
+    //set filter variables
+    private boolean nowOpenFilter=true;
+    private int distanceFilter=5000;//in meters
+    private int priceFilter=0;
+    private double ratingFilter=1.0;
 
     private List<String> selectedItems = new ArrayList<>();
 
@@ -32,21 +38,18 @@ public class RouletteFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_roulette, container, false);
-        Button filter = (Button) view.findViewById(R.id.filter);
 
-        filter.setOnClickListener(new View.OnClickListener() {
+        filterButton = view.findViewById(R.id.filter);
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 showPreferencesDialog();
             }
         });
 
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-
     }
 
     private void showPreferencesDialog() {
@@ -65,12 +68,14 @@ public class RouletteFragment extends Fragment implements View.OnClickListener {
                                 }
                             }
                         })
+                //slider
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // Do something with the selected items
                         Toast.makeText(getActivity(), "Selected items: " + selectedItems.toString(),
                                 Toast.LENGTH_SHORT).show();
+                        //nowOpenFilter=wert von der auswahl;
                     }
                 })
                 .setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {

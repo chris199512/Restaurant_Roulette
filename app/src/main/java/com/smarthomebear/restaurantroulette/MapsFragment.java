@@ -1,5 +1,18 @@
 package com.smarthomebear.restaurantroulette;
 
+/*
+This is an Android application code written in Java for a Restaurant Roulette app. The app uses Google Maps API to show the user's current location and nearby restaurants on the map.
+
+The code starts by importing necessary classes and packages, such as the FusedLocationProviderClient, GoogleMap, and MarkerOptions. It then defines a MapsFragment class that extends Fragment and implements the OnMapReadyCallback interface.
+
+In the onCreateView() method, the code inflates the fragment_maps layout and gets a reference to the Google Maps fragment using the SupportMapFragment class. It also initializes the restaurant button and fusedLocationClient.
+
+When the user clicks the restaurant button, the app sends a request to the Google Places API to find nearby restaurants. The response is returned as a JSON object and is parsed by the FetchData class. The parsed data is then displayed on the map using markers.
+
+In the onMapReady() method, the code checks for location permission, and if it is granted, it uses the FusedLocationProviderClient to get the user's last known location. It then sets the user's location as the center of the map and adds a marker at the location. The zoom level is set to 15.
+ */
+
+
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -12,8 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -29,10 +40,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback{
 
-
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationClient;
     private double lat, lng;
+
     ImageButton restaurant, bar;
 
     public MapsFragment() {
