@@ -17,4 +17,5 @@
         <item>Vegetarisch</item>
         <item>Fleisch</item>
     </string-array>
+    <string name="dsgvo">privacy policy</string>
 </resources>

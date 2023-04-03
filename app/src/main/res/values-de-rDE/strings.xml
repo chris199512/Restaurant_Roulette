@@ -13,4 +13,5 @@
     <string name="qanda"><![CDATA[Q&A]]></string>
     <string name="navigation_drawer_open">Navigation öffnen</string>
     <string name="navigation_drawer_close">Navigation schließen</string>
+    <string name="dsgvo">Datenschutzerklärung</string>
 </resources>

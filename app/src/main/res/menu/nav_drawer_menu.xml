@@ -30,6 +30,10 @@
                 android:id="@+id/nav_questions"
                 android:title="@string/qanda"
                 android:icon="@drawable/ic_baseline_question_mark_24"/>
+            <item
+                android:id="@+id/nav_dsgvo"
+                android:title="@string/dsgvo"
+                android:icon="@drawable/ic_baseline_privacy_tip_24"/>
         </menu>
     </item>
 
