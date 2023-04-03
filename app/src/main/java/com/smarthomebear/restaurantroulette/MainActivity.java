@@ -83,21 +83,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new FavoriteFragment()).commit();
                 break;
             case R.id.nav_bug:
-                Toast.makeText(this, "Bug", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_questions:
-                Toast.makeText(this, "Q&A", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_dsgvo:
-                AlertDialog.Builder alert=new AlertDialog.Builder(this);
-                alert.setTitle("Datenschutzerklärung");
-                alert.setMessage("Hier steht Text");
-                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder bug=new AlertDialog.Builder(this);
+                bug.setTitle("Fehler");
+                bug.setMessage("Hier steht Text");
+                bug.setPositiveButton("Melden", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
                 });
-                alert.create().show();
+                bug.create().show();
+                break;
+            case R.id.nav_questions:
+                AlertDialog.Builder questions=new AlertDialog.Builder(this);
+                questions.setTitle("Fragen?");
+                questions.setMessage("Hier steht Text");
+                questions.setPositiveButton("Übermitteln", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                questions.create().show();
+                break;
+            case R.id.nav_dsgvo:
+                AlertDialog.Builder dsgvo=new AlertDialog.Builder(this);
+                dsgvo.setTitle("Datenschutzerklärung");
+                dsgvo.setMessage("Hier steht Text");
+                dsgvo.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                dsgvo.create().show();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
