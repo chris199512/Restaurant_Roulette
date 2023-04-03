@@ -40,6 +40,15 @@ public class RouletteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_roulette, container, false);
 
         filterButton = view.findViewById(R.id.filter);
+        imageViewRoulette=view.findViewById(R.id.roulette);
+
+        imageViewRoulette.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation rotateImage=AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotate);
+                imageViewRoulette.startAnimation(rotateImage);
+            }
+        });
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +60,7 @@ public class RouletteFragment extends Fragment {
 
         return view;
     }
+
 
     private void showPreferencesDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
