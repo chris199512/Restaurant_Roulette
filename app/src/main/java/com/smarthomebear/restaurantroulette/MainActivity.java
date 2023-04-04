@@ -22,7 +22,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,12 +50,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Variables for the address
     FusedLocationProviderClient fusedLocationProviderClient;
     TextView address;
+    ImageButton renew;
     private final static int REQUEST_CODE=100;
     private double lat,lng;
     private String fullAddress;
     private String street;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,9 +97,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new RouletteFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_roulette);
 
-
-
         }
+
+        //set Button for renew location
+        renew=findViewById(R.id.toolbar_location_renew);
+        renew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLastLocation();
+            }
+        });
+
     }
     //Query current location
     @SuppressLint("MissingPermission")
@@ -113,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 street=addresses.get(0).getThoroughfare();
                                 lat=addresses.get(0).getLatitude();
                                 lng=addresses.get(0).getLongitude();
-                                address.setText("Address: "+street);
+                                address.setText(street);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
