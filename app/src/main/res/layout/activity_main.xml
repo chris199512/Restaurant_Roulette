@@ -21,6 +21,11 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/location"/>
+
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
