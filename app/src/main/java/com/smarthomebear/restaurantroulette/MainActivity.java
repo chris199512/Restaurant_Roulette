@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 bug.setPositiveButton("Melden", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        SendEmailTask task = new SendEmailTask("Fehler", inputBug.getText().toString());
+                        task.execute();
                         Toast.makeText(MainActivity.this, "gesendet", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_questions:
                 AlertDialog.Builder questions=new AlertDialog.Builder(this);
                 questions.setTitle("Fragen?");
-                questions.setMessage("Bitte geben sie ihre Frage ein");
+                questions.setMessage("Bitte geben sie ihre Frage ein und eine Email zum antworten");
                 final EditText inputQuestions = new EditText(this);
                 // Specify the type of input expected
                 inputQuestions.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -111,6 +113,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 questions.setPositiveButton("Übermitteln", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        SendEmailTask task = new SendEmailTask("Frage", inputQuestions.getText().toString());
+                        task.execute();
                         Toast.makeText(MainActivity.this, "gesendet", Toast.LENGTH_SHORT).show();
                     }
                 });
