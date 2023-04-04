@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -85,10 +87,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_bug:
                 AlertDialog.Builder bug=new AlertDialog.Builder(this);
                 bug.setTitle("Fehler");
-                bug.setMessage("Hier steht Text");
+                bug.setMessage("Bitte geben sie den Fehler ein");
+                final EditText inputBug = new EditText(this);
+                // Specify the type of input expected
+                inputBug.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                bug.setView(inputBug);
                 bug.setPositiveButton("Melden", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "gesendet", Toast.LENGTH_SHORT).show();
                     }
                 });
                 bug.create().show();
@@ -96,10 +103,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_questions:
                 AlertDialog.Builder questions=new AlertDialog.Builder(this);
                 questions.setTitle("Fragen?");
-                questions.setMessage("Hier steht Text");
+                questions.setMessage("Bitte geben sie ihre Frage ein");
+                final EditText inputQuestions = new EditText(this);
+                // Specify the type of input expected
+                inputQuestions.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+                questions.setView(inputQuestions);
                 questions.setPositiveButton("Übermitteln", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "gesendet", Toast.LENGTH_SHORT).show();
                     }
                 });
                 questions.create().show();
