@@ -18,4 +18,14 @@
         <item>Fleisch</item>
     </string-array>
     <string name="dsgvo">privacy policy</string>
+    <string name="req_permission">Requires Permission</string>
+    <string name="bug_input">Please describe the bug</string>
+    <string name="report">Report</string>
+    <string name="msg_sent">Message sent</string>
+    <string name="questions">Questions</string>
+    <string name="msg_questions">Please enter your question and an email to reply</string>
+    <string name="transmit">Transmit</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="ok">OK</string>
+    <string name="msg_dsgvo">Hier steht Text</string>
 </resources>

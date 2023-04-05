@@ -1,48 +1,31 @@
 package com.smarthomebear.restaurantroulette;
 
-/*
-This is an Android application code written in Java for a Restaurant Roulette app. The app uses Google Maps API to show the user's current location and nearby restaurants on the map.
-
-The code starts by importing necessary classes and packages, such as the FusedLocationProviderClient, GoogleMap, and MarkerOptions. It then defines a MapsFragment class that extends Fragment and implements the OnMapReadyCallback interface.
-
-In the onCreateView() method, the code inflates the fragment_maps layout and gets a reference to the Google Maps fragment using the SupportMapFragment class. It also initializes the restaurant button and fusedLocationClient.
-
-When the user clicks the restaurant button, the app sends a request to the Google Places API to find nearby restaurants. The response is returned as a JSON object and is parsed by the FetchData class. The parsed data is then displayed on the map using markers.
-
-In the onMapReady() method, the code checks for location permission, and if it is granted, it uses the FusedLocationProviderClient to get the user's last known location. It then sets the user's location as the center of the map and adds a marker at the location. The zoom level is set to 15.
- */
-
-
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback{
 
     private GoogleMap mMap;
-    private FusedLocationProviderClient fusedLocationClient;
     private double lat, lng;
+    private String fullAddress;
+    private final static int REQUEST_CODE=100;
 
     ImageButton restaurant, bar;
 
@@ -59,11 +42,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //getPlaces
+        //getRestaurants
         restaurant=rootView.findViewById(R.id.map_restaurant_button);
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
         restaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,27 +68,48 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback{
     }
 
     @Override
-    //because of the missing permission error
-    @SuppressLint("MissingPermission")
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ActivityCompat.checkSelfPermission(getActivity(), ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{ACCESS_FINE_LOCATION}, 1);
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            lat= location.getLatitude();
-                            lng=location.getLongitude();
-                            LatLng currentLocation = new LatLng(lat, lng);
-                            mMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
-                        }
-                    }
-                });
+        addLocation();
+
     }
+    //get coordinates and add them to the map
+    private void addLocation(){
+        if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            lat = MainActivity.getLat();
+            lng = MainActivity.getLng();
+            fullAddress=MainActivity.getFullAddress();
+            LatLng currentLocation = new LatLng(lat, lng);
+            mMap.addMarker(new MarkerOptions().position(currentLocation).title(fullAddress));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
+
+        }else{
+            askPermission();
+
+             }
+    }
+
+    //Ask for location authorization
+    private void askPermission(){
+        ActivityCompat.requestPermissions(getActivity(),new String[]
+                {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+    }
+
+    //If rejected, check again and report back
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if(requestCode==REQUEST_CODE){
+            if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                addLocation();
+            }
+            else{
+                Toast.makeText(getContext(), R.string.req_permission, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }

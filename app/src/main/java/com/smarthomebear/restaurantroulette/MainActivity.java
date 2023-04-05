@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -52,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView address;
     ImageButton renew;
     private final static int REQUEST_CODE=100;
-    private double lat,lng;
-    private String fullAddress;
+    private static double lat, lng;
+    private static String fullAddress;
     private String street;
 
 
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getLastLocation();
             }
             else{
-                Toast.makeText(this, "Required Permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.req_permission, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -175,45 +176,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_bug:
                 AlertDialog.Builder bug=new AlertDialog.Builder(this);
-                bug.setTitle("Fehler");
-                bug.setMessage("Bitte geben sie den Fehler ein");
+                bug.setTitle(R.string.bug);
+                bug.setMessage(R.string.bug_input);
                 final EditText inputBug = new EditText(this);
                 // Specify the type of input expected
                 inputBug.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 bug.setView(inputBug);
-                bug.setPositiveButton("Melden", new DialogInterface.OnClickListener() {
+                bug.setPositiveButton(R.string.report, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         SendEmailTask task = new SendEmailTask("Fehler", inputBug.getText().toString());
                         task.execute();
-                        Toast.makeText(MainActivity.this, "gesendet", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.msg_sent), Toast.LENGTH_SHORT).show();
                     }
                 });
                 bug.create().show();
                 break;
             case R.id.nav_questions:
                 AlertDialog.Builder questions=new AlertDialog.Builder(this);
-                questions.setTitle("Fragen?");
-                questions.setMessage("Bitte geben sie ihre Frage ein und eine Email zum antworten");
+                questions.setTitle(R.string.questions+"?");
+                questions.setMessage(R.string.msg_questions);
                 final EditText inputQuestions = new EditText(this);
                 // Specify the type of input expected
                 inputQuestions.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
                 questions.setView(inputQuestions);
-                questions.setPositiveButton("Übermitteln", new DialogInterface.OnClickListener() {
+                questions.setPositiveButton(R.string.transmit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         SendEmailTask task = new SendEmailTask("Frage", inputQuestions.getText().toString());
                         task.execute();
-                        Toast.makeText(MainActivity.this, "gesendet", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.msg_sent), Toast.LENGTH_SHORT).show();
                     }
                 });
                 questions.create().show();
                 break;
             case R.id.nav_dsgvo:
                 AlertDialog.Builder dsgvo=new AlertDialog.Builder(this);
-                dsgvo.setTitle("Datenschutzerklärung");
-                dsgvo.setMessage("Hier steht Text");
-                dsgvo.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                dsgvo.setTitle(R.string.privacy_policy);
+                dsgvo.setMessage(R.string.msg_dsgvo);
+                dsgvo.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
@@ -231,8 +232,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Intent intent=new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
+    }
+
+    //making values available for other classes
+    public static double getLat(){
+        return lat;
+    }
+    public static double getLng(){
+        return lng;
+    }
+    public static String getFullAddress(){
+        return fullAddress;
     }
 
 }

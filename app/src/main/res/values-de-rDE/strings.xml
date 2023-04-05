@@ -10,8 +10,17 @@
     <string name="bug">Fehler</string>
     <string name="welcomepage">Startseite</string>
     <string name="other">Sonstige</string>
-    <string name="qanda"><![CDATA[Q&A]]></string>
     <string name="navigation_drawer_open">Navigation öffnen</string>
     <string name="navigation_drawer_close">Navigation schließen</string>
     <string name="dsgvo">Datenschutzerklärung</string>
+    <string name="msg_questions">Bitte geben sie ihre Frage ein und eine Email zum antworten</string>
+    <string name="questions">Fragen</string>
+    <string name="msg_sent">Nachricht gesendet</string>
+    <string name="bug_input">Bitte geben sie den Fehler ein</string>
+    <string name="req_permission">Benötigt Berechtigung</string>
+    <string name="report">Melden</string>
+    <string name="transmit">Übermitteln</string>
+    <string name="privacy_policy">Datenschutzerklärung</string>
+    <string name="ok">Ok</string>
+    <string name="msg_dsgvo">Hier steht Text</string>
 </resources>
