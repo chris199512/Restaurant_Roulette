@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static String fullAddress;
     private String street;
 
+    //Backpressed
+    private static final int TIME_INTERVAL=2000;
+    private long backPressed;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -120,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addOnSuccessListener(new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
+                            //problem if no old location -> else empty
                             if(location!=null){
                             Geocoder geocoder=new Geocoder(MainActivity.this, Locale.getDefault());
                             List<Address> addresses= null;
@@ -239,13 +244,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Intent intent=new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            if(backPressed+TIME_INTERVAL>System.currentTimeMillis()){
+                finish();
+            }
+            else{
+                Toast.makeText(this, getString(R.string.press_back), Toast.LENGTH_SHORT).show();
+            }
+            backPressed=System.currentTimeMillis();
         }
     }
-
     //making values available for other classes
     public static double getLat(){
         return lat;
