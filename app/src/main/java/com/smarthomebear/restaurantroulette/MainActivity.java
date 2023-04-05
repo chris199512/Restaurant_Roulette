@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView address;
     ImageButton renew;
     private final static int REQUEST_CODE=100;
-    private static double lat, lng;
+    private static double lat=0;
+    private static double lng=0;
     private static String fullAddress;
     private String street;
 
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addOnSuccessListener(new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
+                            if(location!=null){
                             Geocoder geocoder=new Geocoder(MainActivity.this, Locale.getDefault());
                             List<Address> addresses= null;
                             try {
@@ -130,8 +133,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        }else{
+
+                            }
                         }
                     });
+
         }else{
             askPermission();
 
