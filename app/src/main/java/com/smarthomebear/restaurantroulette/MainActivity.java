@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView address;
     ImageButton renew;
     private final static int REQUEST_CODE=100;
-    private static double lat=0;
-    private static double lng=0;
+    private static double lat;
+    private static double lng;
     private static String fullAddress;
     private String street;
 
