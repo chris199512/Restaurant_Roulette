@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/roulette"
         android:layout_width="325dp"
         android:layout_height="343dp"
         android:contentDescription="@string/roulette"
         android:src="@drawable/kreis1"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,10 +24,34 @@
         android:layout_width="157dp"
         android:layout_height="51dp"
         android:layout_marginTop="48dp"
-        android:background="@color/ashGrey"
+        android:background="@color/pink"
         android:text="@string/filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roulette" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Dreh mich, um dein Hunger zu stillen !"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/roulette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.573"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/selectionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/roulette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

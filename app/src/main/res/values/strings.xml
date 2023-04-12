@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TasteSpinner</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,10 +12,9 @@
     <string name="bug">Bug</string>
     <string name="qanda" translatable="false"><![CDATA[Q&A]]></string>
     <string name="other">Other</string>
+    <string name="rating_star" translatable="false">Star</string>
     <string-array name="preferences">
-        <item>Vegan</item>
-        <item>Vegetarisch</item>
-        <item>Fleisch</item>
+        <item>Open</item>
     </string-array>
     <string name="dsgvo">privacy policy</string>
     <string name="req_permission">Requires Permission</string>
