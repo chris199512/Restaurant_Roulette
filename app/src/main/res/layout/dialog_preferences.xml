@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Präferenzen auswählen"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/rating_star"
+        android:numStars="5"
+        android:rating="1.0"
+        android:stepSize="0.5" />
+
+    <CheckBox
+        android:id="@+id/nowOpenFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nur geöffnete Restaurants anzeigen"
+        android:checked="true" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kilometer:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+    <SeekBar
+        android:id="@+id/metersSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="5"
+        android:progress="0" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preis:         €€          €€€         €€€€"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
+    <SeekBar
+        android:id="@+id/priceSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="4"
+        android:progress="0" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ernährungspräferenzen:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
+    <CheckBox
+        android:id="@+id/vegetarian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vegetarisch" />
+
+    <CheckBox
+        android:id="@+id/vegan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vegan" />
+
+    <CheckBox
+        android:id="@+id/glutenfree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Glutenfrei" />
+
+    <CheckBox
+        android:id="@+id/lactosefree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Laktosefrei" />
+
+
+
+</LinearLayout>
