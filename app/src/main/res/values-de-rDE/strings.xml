@@ -24,4 +24,5 @@
     <string name="ok">Ok</string>
     <string name="msg_dsgvo">Hier steht Text</string>
     <string name="press_back">Drücke nochmal Zurück um die App zu verlassen</string>
+    <string name="view_restaurant">Für dich</string>
 </resources>

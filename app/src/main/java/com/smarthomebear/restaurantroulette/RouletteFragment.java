@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import java.io.CharArrayWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RouletteFragment extends Fragment {
 
@@ -35,6 +40,9 @@ public class RouletteFragment extends Fragment {
     private int priceFilter = 0;
     private double ratingFilter = 1.0;
     private List<String> selectedItems = new ArrayList<>();
+    private String[] res;
+
+    Random r = new Random();
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -49,6 +57,35 @@ public class RouletteFragment extends Fragment {
             public void onClick(View view) {
                 Animation rotateImage = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotate);
                 imageViewRoulette.startAnimation(rotateImage);
+                StringBuilder stringBuilder=new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+                stringBuilder.append("location="+MainActivity.getLat()+","+MainActivity.getLng());
+                stringBuilder.append("&radius=10000");
+                stringBuilder.append("&type=restaurant");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key="+BuildConfig.MAPS_API_KEY);
+
+                String url=stringBuilder.toString();
+                Object dataFetch[]=new Object[1];
+                dataFetch[0]=url;
+
+                FetchDataRoulette fetchData=new FetchDataRoulette();
+                fetchData.execute(dataFetch);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        res=FetchDataRoulette.getRes();
+                        int i1=r.nextInt(res.length);
+                        AlertDialog.Builder restaurant=new AlertDialog.Builder(getActivity());
+                        restaurant.setTitle(R.string.view_restaurant);
+                        restaurant.setMessage(res[i1]);
+                        restaurant.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                        restaurant.create().show();
+                    }
+                }, 4000);
             }
         });
 
