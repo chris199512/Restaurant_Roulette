@@ -1,9 +1,6 @@
 package com.smarthomebear.restaurantroulette;
 
 import android.os.AsyncTask;
-import android.util.Log;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,7 +87,7 @@ public class FetchDataRoulette extends AsyncTask<Object,String,String> {
         try{
             url=(String) objects[0];
             DownloadUrl downloadUrl=new DownloadUrl();
-            googleNearByPlacesData= downloadUrl.retireveUrl(url);
+            googleNearByPlacesData= downloadUrl.receiveUrl(url);
         } catch (IOException e) {
             e.printStackTrace();
         }

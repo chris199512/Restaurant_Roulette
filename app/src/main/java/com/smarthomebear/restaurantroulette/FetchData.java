@@ -2,7 +2,6 @@ package com.smarthomebear.restaurantroulette;
 
 import android.os.AsyncTask;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -56,7 +55,7 @@ public class FetchData extends AsyncTask<Object,String,String> {
             googleMap=(GoogleMap) objects[0];
             url=(String) objects[1];
             DownloadUrl downloadUrl=new DownloadUrl();
-            googleNearByPlacesData= downloadUrl.retireveUrl(url);
+            googleNearByPlacesData= downloadUrl.receiveUrl(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
