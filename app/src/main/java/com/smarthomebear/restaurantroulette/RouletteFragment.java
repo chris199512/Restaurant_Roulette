@@ -3,6 +3,8 @@ package com.smarthomebear.restaurantroulette;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -40,7 +42,7 @@ public class RouletteFragment extends Fragment {
     private int priceFilter = 0;
     private double ratingFilter = 1.0;
     private List<String> selectedItems = new ArrayList<>();
-    private String[] res;
+    private String[][] res;
 
     Random r = new Random();
 
@@ -57,11 +59,11 @@ public class RouletteFragment extends Fragment {
             public void onClick(View view) {
                 Animation rotateImage = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotate);
                 imageViewRoulette.startAnimation(rotateImage);
-                StringBuilder stringBuilder=new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-                stringBuilder.append("location="+MainActivity.getLat()+","+MainActivity.getLng());
-                stringBuilder.append("&radius=10000");
-                stringBuilder.append("&type=restaurant");
-                stringBuilder.append("&sensor=true");
+
+                StringBuilder stringBuilder=new StringBuilder("https://maps.googleapis.com/maps/api/place/textsearch/json?");
+                stringBuilder.append("&query=restaurant");
+                stringBuilder.append("&location="+MainActivity.getLat()+","+MainActivity.getLng());
+                stringBuilder.append("&radius="+distanceFilter);
                 stringBuilder.append("&key="+BuildConfig.MAPS_API_KEY);
 
                 String url=stringBuilder.toString();
@@ -77,11 +79,23 @@ public class RouletteFragment extends Fragment {
                         int i1=r.nextInt(res.length);
                         AlertDialog.Builder restaurant=new AlertDialog.Builder(getActivity());
                         restaurant.setTitle(R.string.view_restaurant);
-                        restaurant.setMessage(res[i1]);
+                        restaurant.setMessage(res[i1][0]+"\nAddress: "+res[i1][1]+"\nnow Open: "+res[i1][5]+"\nPrice: "+res[i1][6]+"\nRating: "+res[i1][7]);
                         restaurant.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                             }
+                        });
+                        restaurant.setNegativeButton("Navigate", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                Uri uri=Uri.parse("https://www.google.com/maps/dir/?api=1&destination="+res[i1][2]+","+res[i1][3]);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                intent.setPackage("com.google.android.apps.maps");
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+
                         });
                         restaurant.create().show();
                     }
@@ -100,6 +114,7 @@ public class RouletteFragment extends Fragment {
 
         return view;
     }
+
 
     private void showPreferencesDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
