@@ -16,6 +16,8 @@ public class FetchDataRoulette extends AsyncTask<Object,String,String> {
     String url;
     static String[][] res;
 
+    String openNow,priceLevel,rating;
+
     @Override
     protected void onPostExecute(String s) {
 
@@ -25,7 +27,6 @@ public class FetchDataRoulette extends AsyncTask<Object,String,String> {
 
             res=new String[jsonArray.length()][8];
 
-            Log.d("test",""+jsonArray.length());
             for(int i=0;i<jsonArray.length();i++){
 
                 JSONObject getAddress=jsonArray.getJSONObject(i);
@@ -41,18 +42,27 @@ public class FetchDataRoulette extends AsyncTask<Object,String,String> {
                 String name=getName.getString("name");
 
                 JSONObject getOpenNow=jsonArray.getJSONObject(i);
-                String openNow=getOpenNow.getJSONObject("opening_hours").getString("open_now");
-
+                if(getOpenNow.has("opening_hours")) {
+                    openNow = getOpenNow.getJSONObject("opening_hours").getString("open_now");
+                }else{
+                    openNow="no data";
+                }
                 JSONObject getPlaceId=jsonArray.getJSONObject(i);
                 String placeId=getPlaceId.getString("place_id");
 
-                //Test einbauen
-                //JSONObject getPriceLevel=jsonArray.getJSONObject(i);
-                //String priceLevel=getPriceLevel.getString("price_level");
-                String priceLevel="test";
+                JSONObject getPriceLevel=jsonArray.getJSONObject(i);
+                if(getPriceLevel.has("price_level")) {
+                    priceLevel=getPriceLevel.getString("price_level");
+                }
+                else{priceLevel="no data";
+                }
 
                 JSONObject getRating=jsonArray.getJSONObject(i);
-                String rating=getRating.getString("rating");
+                if(getPriceLevel.has("rating")) {
+                    rating=getRating.getString("rating");
+                }
+                else{rating="no data";
+                }
 
                 res[i][0]=name;
                 res[i][1]=address;
