@@ -8,9 +8,7 @@ The method throws an IOException in case there is an error while attempting to c
 
 Finally, the input stream and connection are closed in a finally block to ensure that they are properly closed regardless of any exceptions that may have occurred.
  */
-import android.app.Activity;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
