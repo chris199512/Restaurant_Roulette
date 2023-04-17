@@ -79,7 +79,7 @@ public class RouletteFragment extends Fragment {
                         int i1=r.nextInt(res.length);
                         AlertDialog.Builder restaurant=new AlertDialog.Builder(getActivity());
                         restaurant.setTitle(R.string.view_restaurant);
-                        restaurant.setMessage(res[i1][0]+"\nAddress: "+res[i1][1]+"\nnow Open: "+res[i1][5]+"\nPrice: "+res[i1][6]+"\nRating: "+res[i1][7]);
+                        restaurant.setMessage(res[i1][1]+"\nAddress: "+res[i1][2]+"\nnow Open: "+res[i1][7]+"\nPrice: "+res[i1][8]+"\nRating: "+res[i1][9]);
                         restaurant.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
