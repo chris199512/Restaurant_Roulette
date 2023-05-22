@@ -1,13 +1,11 @@
 package com.smarthomebear.restaurantroulette;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +16,19 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import java.io.CharArrayWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RouletteFragment extends Fragment {
 
+    // variables
     ImageView imageViewRoulette;
     Button filterButton;
     Animation rotateImage;
@@ -41,9 +39,9 @@ public class RouletteFragment extends Fragment {
     private int distanceFilter = 5000;//in meters
     private int priceFilter = 0;
     private double ratingFilter = 1.0;
+    double ratingFilterPreferences;
     private List<String> selectedItems = new ArrayList<>();
     private String[][] res;
-
     Random r = new Random();
 
     @SuppressLint("MissingInflatedId")
@@ -56,6 +54,7 @@ public class RouletteFragment extends Fragment {
         imageViewRoulette = view.findViewById(R.id.roulette);
         imageViewRoulette.setOnClickListener(new View.OnClickListener() {
             @Override
+            // disc rotation
             public void onClick(View view) {
                 Animation rotateImage = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotate);
                 imageViewRoulette.startAnimation(rotateImage);
@@ -103,6 +102,7 @@ public class RouletteFragment extends Fragment {
             }
         });
 
+        //open filter button
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,17 +118,21 @@ public class RouletteFragment extends Fragment {
 
     private void showPreferencesDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_preferences, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.fragment_preferences, null);
         builder.setView(dialogView);
 
         View view = dialogView.getRootView();
         priceSeekBar = view.findViewById(R.id.priceSeekBar);
         metersSeekBar = view.findViewById(R.id.metersSeekBar);
+        TextView kilometerFilter=(TextView) view.findViewById(R.id.kilometer_filter);
 
+        // meter seekbar
         metersSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                distanceFilter = (progress + 1) * 1000; // Wert in Metern (1 km = 1000 m)
+                distanceFilter = (progress + 1) *1000; // Wert in Metern (1 km = 1000 m)
+int distance=distanceFilter/1000;
+                kilometerFilter.setText( distance+"");
             }
 
             @Override
@@ -142,24 +146,27 @@ public class RouletteFragment extends Fragment {
             }
         });
 
-        //price
-        priceSeekBar.setMax(3); // vier Preisklassen, also Maximalwert auf 3 setzen
+        //price seekbar
+        priceSeekBar.setMax(4); // four price classes, so set maximum value to 4
         priceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Umrechnung des Fortschritts (0-3) in die entsprechende Preisklasse
+                // eConversion of the progress (0-4) into the corresponding price class
                 switch (progress) {
                     case 0:
-                        priceFilter = 0; // € (cheap)
+                        priceFilter = 0; //(free)
                         break;
                     case 1:
-                        priceFilter = 1; // €€ (affordable)
+                        priceFilter = 1; // € (cheap)
                         break;
                     case 2:
-                        priceFilter = 2; // €€€ (expensive)
+                        priceFilter = 2; // €€ (affordable)
                         break;
                     case 3:
-                        priceFilter = 3; // €€€€ (very expensive)
+                        priceFilter = 3; // €€€ (expensive)
+                        break;
+                    case 4:
+                        priceFilter = 4; // €€€€ (very expensive)
                         break;
                 }
             }
@@ -181,23 +188,17 @@ public class RouletteFragment extends Fragment {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingFilter = rating;
+                ratingFilterPreferences = rating;
+
             }
         });
 
+        //show open restautants
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        //nowOpenFilter choice
-                        if (nowOpenFilter) {
-                            for (String item : selectedItems) {
-                                if (item.equalsIgnoreCase("true")) {
-                                    //Show restautants that are open
-                                }
-                            }
-                        } else {
-                            //show all restaurants
-                        }
+                        //nowOpenFilter = true;
+                        ratingFilter = ratingFilterPreferences;
 
                     }
                 })

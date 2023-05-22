@@ -1,0 +1,191 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Präferenzen auswählen"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/rating_star"
+            android:numStars="5"
+            android:rating="1.0"
+            android:stepSize="0.5" />
+
+        <CheckBox
+            android:id="@+id/nowOpenFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Nur geöffnete Restaurants anzeigen" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Kilometer: "
+            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/kilometer_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="5"
+        android:textSize="16sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=" km"
+        android:textSize="16sp" />
+</LinearLayout>
+        <SeekBar
+            android:id="@+id/metersSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="9"
+            android:progress="4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preis:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="€     " />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="€€  " />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="€€€" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="€€€€" />
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/priceSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="4"
+            android:progress="0" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Ernährungspräferenzen:"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/vegetarian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vegetarisch" />
+
+        <CheckBox
+            android:id="@+id/vegan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vegan" />
+
+        <CheckBox
+            android:id="@+id/glutenfree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Glutenfrei" />
+
+        <CheckBox
+            android:id="@+id/lactosefree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laktosefrei" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Küche:"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/italy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Italienisch" />
+
+        <CheckBox
+            android:id="@+id/german"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deutsch" />
+
+        <CheckBox
+            android:id="@+id/mexican"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mexikanisch" />
+
+        <CheckBox
+            android:id="@+id/asian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asiatisch" />
+
+        <CheckBox
+            android:id="@+id/turkish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Türkisch"/>
+
+    </LinearLayout>
+
+</ScrollView>
