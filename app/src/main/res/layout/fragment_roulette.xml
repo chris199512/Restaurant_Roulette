@@ -24,7 +24,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dreh mich, um dein Hunger zu stillen !"
+        android:text="Dreh mich, um deinen Hunger zu stillen !"
         android:textStyle="bold"
         android:textColor="@color/grey"
         android:textSize="20sp"
